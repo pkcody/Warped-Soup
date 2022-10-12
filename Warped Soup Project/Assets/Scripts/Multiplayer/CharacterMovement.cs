@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
@@ -25,6 +26,11 @@ public class CharacterMovement : MonoBehaviour
     public Vector3 lastLook;
     public Vector2 movementInput;
 
+    //For pickup
+    public InventoryObject inventory;
+    //public Text pickUpText;
+    private List<GameObject> itemList = new List<GameObject>();
+
     private void Awake()
     {
         playerInput = new PlayerControls();
@@ -32,7 +38,13 @@ public class CharacterMovement : MonoBehaviour
         _col = GetComponent<CapsuleCollider>();
     }
 
+    void Start()
+    {
+        inventory.Container.Clear();
+        //pickUpText.gameObject.SetActive(false);
+    }
 
+    //player movement
     private void OnEnable()
     {
         playerInput.Enable();
@@ -52,6 +64,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    //check if player on ground
     private bool IsGrounded()
     {
         Vector3 capsuleBottom = new Vector3(_col.bounds.center.x, _col.bounds.min.y, _col.bounds.center.z);
@@ -59,6 +72,30 @@ public class CharacterMovement : MonoBehaviour
         return grounded;
     }
 
+    //Pick up functions
+    public void OnTriggerStay(Collider collision)
+    {
+        //pickUpText.gameObject.SetActive(true);
+        //Debug.Log("aaaaaaaaaaaaaaaaaaa");
+    }
+
+    public void OnTriggerExit(Collider collision)
+    {
+        //pickUpText.gameObject.SetActive(false);
+        itemList.Remove(collision.gameObject);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        itemList.Add(other.gameObject);
+    }
+
+    private void OnApplicationQuit()
+    {
+        inventory.Container.Clear();
+    }
+
+    //update
     private void Update()
     {
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * playerSpeed * Time.deltaTime);
@@ -69,7 +106,24 @@ public class CharacterMovement : MonoBehaviour
         }
         body.transform.forward = lastLook;
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log(itemList);
+            foreach (GameObject obj in itemList)
+            {
+                var item = obj.GetComponent<Item>();
+                if (item)
+                {
+                    inventory.AddItem(item.item, 1);
+                    Destroy(obj.gameObject);
+                }
+            }
+            itemList.Clear();
+            //pickUpText.gameObject.SetActive(false);
+        }
     }
+
+
     private void FixedUpdate()
     {
         if (doJump)

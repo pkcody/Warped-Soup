@@ -335,6 +335,8 @@ MonoBehaviour:
     m_Bits: 256
   lastLook: {x: 0, y: 0, z: 0}
   movementInput: {x: 0, y: 0}
+  inventory: {fileID: 11400000, guid: f891bd6daae8ca64baa26097de3cdb45, type: 2}
+  pickUpText: {fileID: 0}
 --- !u!136 &5990938370862556307
 CapsuleCollider:
   m_ObjectHideFlags: 0
