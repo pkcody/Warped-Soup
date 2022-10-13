@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
+    public Text displayInventory;
     private PlayerControls playerInput;
     public GameObject body;
 
@@ -63,7 +64,19 @@ public class CharacterMovement : MonoBehaviour
             doJump = true;
         }
     }
-
+    public void PickUp(InputAction.CallbackContext ctx)
+    {
+        foreach (GameObject obj in itemList)
+        {
+            var item = obj.GetComponent<Item>();
+            if (item)
+            {
+                inventory.AddItem(item.item, 1);
+                Destroy(obj.gameObject);
+            }
+        }
+        itemList.Clear();
+    }
     //check if player on ground
     private bool IsGrounded()
     {
@@ -105,22 +118,6 @@ public class CharacterMovement : MonoBehaviour
             lastLook = new Vector3(movementInput.x, 0, movementInput.y);
         }
         body.transform.forward = lastLook;
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log(itemList);
-            foreach (GameObject obj in itemList)
-            {
-                var item = obj.GetComponent<Item>();
-                if (item)
-                {
-                    inventory.AddItem(item.item, 1);
-                    Destroy(obj.gameObject);
-                }
-            }
-            itemList.Clear();
-            //pickUpText.gameObject.SetActive(false);
-        }
     }
 
 

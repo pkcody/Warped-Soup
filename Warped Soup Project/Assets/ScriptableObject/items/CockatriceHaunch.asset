@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   itemName: CockatriceWing
-  prefab: {fileID: 0}
+  prefab: {fileID: 2320705876819105414, guid: 431295896aac5fc4bbd97cdefb51df3c, type: 3}
   type: 2
   description: 
   icon: {fileID: 0}

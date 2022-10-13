@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   itemName: EyeRoot
-  prefab: {fileID: 0}
+  prefab: {fileID: 2320705876819105414, guid: d172351afad80ba43b9f24f6da4d51b9, type: 3}
   type: 2
   description: 
   icon: {fileID: 0}

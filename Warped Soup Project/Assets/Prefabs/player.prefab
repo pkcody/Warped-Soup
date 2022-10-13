@@ -308,6 +308,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8837087517767416026}
+        m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
+        m_MethodName: PickUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 60f194a2-7f65-4890-80a8-dcd8132d107e
+    m_ActionName: Player/PickUp
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -336,7 +352,6 @@ MonoBehaviour:
   lastLook: {x: 0, y: 0, z: 0}
   movementInput: {x: 0, y: 0}
   inventory: {fileID: 11400000, guid: f891bd6daae8ca64baa26097de3cdb45, type: 2}
-  pickUpText: {fileID: 0}
 --- !u!136 &5990938370862556307
 CapsuleCollider:
   m_ObjectHideFlags: 0
